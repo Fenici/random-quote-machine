@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Gochi+Hand');
+
+body{
+background: #ffffff;
+
+}
+
+.stander-font{
+	font-family: 'Gochi Hand', cursive;
+
+}
+
+header h1{
+@extend .stander-font;
+
+
+}
+
