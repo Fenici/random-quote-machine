@@ -10,27 +10,29 @@
 
 // });
 
-function getQuote(data) {
 
-    $.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(data) {
-        var html = "";
-        console.log('data', data);
+// function tweetIt () {
+//   var tweetUrl = 'https://twitter.com/share?text=' +
+//     encodeURIComponent(phrase) +
+//     '.' +
 
-    });
-
-}
-
+//   window.open(tweetUrl);
+// }
+   var Quotes = "";
+            var title = "";
 function getQuote () {
  // Only change code below this line.
         $.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(data) {
             var html = "";
             console.log('data', data);
-
+         
             data.forEach(function(val) {
+                Quotes = val.content;
 
+                title = val.title;
                 html += "<div class = 'quotes'>";
 
-                html += "<blockquote class='blockquote-reverse'>" + "<p>" + val.content + "<footer>" + val.title + "</footer>" + "</p>" + "<blockquote>";
+                html += "<blockquote class='blockquote-reverse'>" + "<p>" + Quotes + "<footer>" + title + "</footer>" + "</p>" + "<blockquote>";
 
                 html += "</div>";
 
@@ -53,6 +55,15 @@ $(document).ready(function() {
     $("#getMessage").on("click", function() {
         // Only change code below this line.
     	getQuote();
+
+    });
+
+    $("#twitter-share-button").on("click",function(){
+        var tweetUrl = 'https://twitter.com/share?text=' + encodeURIComponent(Quotes) + 
+    encodeURIComponent(title) +
+    '.' +
+console.log(tweetUrl);
+  window.open(tweetUrl);
 
     });
 
